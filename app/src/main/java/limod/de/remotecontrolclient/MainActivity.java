@@ -11,7 +11,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import cz.msebera.android.httpclient.Header;
 import limod.de.remotecontrolclient.services.SpotifyTask;
+import limod.de.remotecontrolclient.services.VolumeTask;
 import org.glassfish.jersey.client.ClientConfig;
 
 import javax.ws.rs.ProcessingException;
@@ -25,7 +30,7 @@ import javax.ws.rs.core.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "AppCompatActivity";
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,91 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button btnDown= (Button) findViewById(R.id.btnVolumeDown);
+        btnDown.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                new VolumeTask().execute(VolumeTask.Action.DOWN);
+
+            }
+        });
+
+        Button btnUp= (Button) findViewById(R.id.btnVolumeUp);
+        btnUp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+              //  new VolumeTask().execute(VolumeTask.Action.UP);
+                AsyncHttpClient client = new AsyncHttpClient();
+                client.get("http://192.168.1.11:8080/myapp/volume/up", new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onStart() {
+                        // called before request is started
+                        Log.d(MainActivity.TAG,"onStart");
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                        // called when response HTTP status is "200 OK"
+                        Log.d(MainActivity.TAG,"onSuccess");
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                        // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                        Log.d(MainActivity.TAG,"onFailure");
+                    }
+
+                    @Override
+                    public void onRetry(int retryNo) {
+                        // called when request is retried
+                        Log.d(MainActivity.TAG,"onRetry");
+                    }
+                });
+
+            }
+        });
+
+
+        Button btnMute= (Button) findViewById(R.id.btnVolumeMute);
+        btnMute.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                //  new VolumeTask().execute(VolumeTask.Action.UP);
+                RequestParams params = new RequestParams();
+                params.put("value", 0.5f);
+
+
+                AsyncHttpClient client = new AsyncHttpClient();
+                client.post("http://192.168.1.11:8080/myapp/volume/set", params, new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onStart() {
+                        // called before request is started
+                        Log.d(MainActivity.TAG,"onStart");
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                        // called when response HTTP status is "200 OK"
+                        Log.d(MainActivity.TAG,"onSuccess");
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                        // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                        Log.d(MainActivity.TAG,"onFailure");
+                    }
+
+                    @Override
+                    public void onRetry(int retryNo) {
+                        // called when request is retried
+                        Log.d(MainActivity.TAG,"onRetry");
+                    }
+                });
+
+            }
+        });
 
     }
 
