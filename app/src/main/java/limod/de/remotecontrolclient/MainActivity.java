@@ -31,7 +31,7 @@ import javax.ws.rs.core.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final String HOST = "http://192.168.2.101:8080/";
+    private static final String HOST = "http://192.168.0.25:8080/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,12 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
                 //  new VolumeTask().execute(VolumeTask.Action.UP);
                 RequestParams params = new RequestParams();
-                params.put("shit", "0.5");
+                params.put("volume", "0.5");
                 String host = MainActivity.HOST + "myapp/volume/set";
 
                 Log.d(MainActivity.TAG, "host: " + host);
                 AsyncHttpClient client = new AsyncHttpClient();
-                client.post(host,  new AsyncHttpResponseHandler() {
+                client.post(host, params,  new AsyncHttpResponseHandler() {
 
                     @Override
                     public void onStart() {
