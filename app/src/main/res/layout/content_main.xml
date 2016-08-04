@@ -15,57 +15,134 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
-                  android:layout_height="300px"
+                  android:layout_height="match_parent"
                   android:paddingLeft="16dp"
                   android:paddingRight="16dp"
                   android:orientation="vertical">
 
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="100px"
-                      android:orientation="horizontal">
 
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnPlay"
-                    android:text="Play"
-            />
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnPause"
-                    android:text="Pause"
-            />
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnNext"
-                    android:text="Next"
-            />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="150px"
+                  android:orientation="horizontal">
+
+
+    <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="26dp"
+                android:progress="20"
+                android:max="40"/>
+
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+        <LinearLayout android:layout_width="match_parent" android:layout_height="150px"
                       android:orientation="horizontal">
 
+
             <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnVolumeUp"
-                    android:text="+"
-            />
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnVolumeDown"
-                    android:text="-"
-            />
-            <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnVolumeMute"
                     android:text="Mute"
             />
+            </LinearLayout>
+
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Spotify"
+                android:id="@+id/textView"/>
+    </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal" android:weightSum="3">
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btnSpotifyPlay"
+                    android:text="Play"
+            />
+
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btnSpotifyNext"
+                    android:text="Next"/>
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btnSpotifyPrevious"
+                    android:text="Prev"/>
+
+
         </LinearLayout>
+
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="VLC"
+                    android:id="@+id/textViewVlc"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="150px"
+                      android:orientation="horizontal" android:weightSum="3">
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnVlcPlay"
+                    android:layout_weight="1"
+                    android:text="Play"
+            />
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnVlcPause"
+                    android:layout_weight="1"
+                    android:text="Pause"
+            />
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnVlcSeekB"
+                    android:layout_weight="1"
+                    android:text="@string/seek_back"
+            />
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnVlcSeekF"
+                    android:layout_weight="1"
+                    android:text="@string/seek_forward"
+            />
+        </LinearLayout>
+
+
+
 
     </LinearLayout>
 
