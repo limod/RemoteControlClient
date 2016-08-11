@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -37,7 +39,7 @@ import java.net.ConnectException;
 public class MainActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
 
     private static final String TAG = "MainActivity";
-    public static final String HOST = "http://192.168.2.101:8080/";
+    public static final String HOST = "http://192.168.1.11:8080/";
     private SeekBar soundSeekBar;
 
 
@@ -52,13 +54,99 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
         initSound();
 
         initSpotify();
 
         initVlc();
 
+        initKaffeine();
+
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+
+    public static boolean isInteger(String s, int radix) {
+        if(s.isEmpty()) return false;
+        for(int i = 0; i < s.length(); i++) {
+            if(i == 0 && s.charAt(i) == '-') {
+                if(s.length() == 1) return false;
+                else continue;
+            }
+            if(Character.digit(s.charAt(i),radix) < 0) return false;
+        }
+        return true;
+    }
+
+    private void initKaffeine(){
+        final EditText txtChannel = (EditText) findViewById(R.id.txtChannel);
+
+        ImageButton btnSetChannel = (ImageButton) findViewById(R.id.btnKaffeineSetChannel);
+        btnSetChannel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                if(txtChannel.getText() != null && txtChannel.getText().length() > 0 && isInteger(txtChannel.getText().toString(),10)) {
+                    RequestParams params = new RequestParams();
+                    params.put("channel", txtChannel.getText());
+
+
+                    TvService.post(TvService.API_SET_CHANNEL, params, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                } else {
+                    showDialog("Kein Channel gesetzt");
+                }
+
+            }
+        });
+
+
+        ImageButton btnQuit = (ImageButton) findViewById(R.id.btnKaffeineQuit);
+        btnQuit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                TvService.post(TvService.API_QUIT, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+            }
+        });
+
+        ImageButton btnNext= (ImageButton) findViewById(R.id.btnKaffeineNext);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                TvService.post(TvService.API_NEXT, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+            }
+        });
+
+        ImageButton btnPrev= (ImageButton) findViewById(R.id.btnKaffeinePrev);
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                TvService.post(TvService.API_PREVIOUS, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+            }
+        });
+        ImageButton btnLastChannel = (ImageButton) findViewById(R.id.btnKaffeineLastChannel);
+        btnLastChannel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                TvService.post(TvService.API_PLAY_LAST_CHANNEL, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+            }
+        });
+
+
+    }
+
 
     private void initSound(){
         soundSeekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -111,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         });
 
 
-        Button btnMute = (Button) findViewById(R.id.btnVolumeMute);
+        ImageButton btnMute = (ImageButton) findViewById(R.id.btnVolumeMute);
         btnMute.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SoundService.post(SoundService.API_MUTE, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
@@ -124,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         /**
          * Spotify Buttons
          */
-        Button btnPlay = (Button) findViewById(R.id.btnSpotifyPlay);
+        ImageButton btnPlay = (ImageButton) findViewById(R.id.btnSpotifyPlay);
         btnPlay.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -133,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
             }
         });
 
-        Button btnNext = (Button) findViewById(R.id.btnSpotifyNext);
+        ImageButton btnNext = (ImageButton) findViewById(R.id.btnSpotifyNext);
         btnNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -142,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
             }
         });
 
-        Button btnPrevious = (Button) findViewById(R.id.btnSpotifyPrevious);
+        ImageButton btnPrevious = (ImageButton) findViewById(R.id.btnSpotifyPrevious);
         btnPrevious.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -158,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
          * VLC Buttons
          */
 
-        Button btnVlcPlay= (Button) findViewById(R.id.btnVlcPlay);
+        ImageButton btnVlcPlay= (ImageButton) findViewById(R.id.btnVlcPlay);
         btnVlcPlay.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -167,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
             }
         });
 
-        Button btnVlcPause= (Button) findViewById(R.id.btnVlcPause);
+        ImageButton btnVlcPause= (ImageButton) findViewById(R.id.btnVlcPause);
         btnVlcPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -175,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
 
             }
         });
-        Button btnVlcSeekB= (Button) findViewById(R.id.btnVlcSeekB);
+        ImageButton btnVlcSeekB= (ImageButton) findViewById(R.id.btnVlcSeekB);
         btnVlcSeekB.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -188,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
             }
         });
 
-        Button btnVlcSeekF= (Button) findViewById(R.id.btnVlcSeekF);
+        ImageButton btnVlcSeekF= (ImageButton) findViewById(R.id.btnVlcSeekF);
         btnVlcSeekF.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -208,20 +296,6 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onDismiss(DialogInterface dialog) {

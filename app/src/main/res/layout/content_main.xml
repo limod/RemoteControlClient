@@ -42,11 +42,11 @@
                       android:orientation="horizontal">
 
 
-            <Button
+            <ImageButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnVolumeMute"
-                    android:text="Mute"
+                    android:src="@drawable/ic_volume_off_black_24dp"
             />
             </LinearLayout>
 
@@ -66,28 +66,31 @@
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="horizontal" android:weightSum="3">
 
-            <Button
+            <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:id="@+id/btnSpotifyPlay"
-                    android:text="Play"
+                    android:src="@drawable/ic_play_circle_filled_black_24dp"
             />
 
-
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/btnSpotifyNext"
-                    android:text="Next"/>
-
-            <Button
+            <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:id="@+id/btnSpotifyPrevious"
-                    android:text="Prev"/>
+                    android:src="@drawable/ic_skip_previous_black_24dp"/>
+
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btnSpotifyNext"
+                    android:src="@drawable/ic_skip_next_black_24dp"
+                  />
+
+
 
 
         </LinearLayout>
@@ -106,38 +109,105 @@
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="150px"
-                      android:orientation="horizontal" android:weightSum="3">
+                      android:orientation="horizontal" android:weightSum="4">
 
-            <Button
+            <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnVlcPlay"
                     android:layout_weight="1"
-                    android:text="Play"
+                    android:src="@drawable/ic_play_circle_filled_black_24dp"
             />
 
-            <Button
+            <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnVlcPause"
                     android:layout_weight="1"
-                    android:text="Pause"
+                    android:src="@drawable/ic_pause_circle_filled_black_24dp"
             />
 
-            <Button
+            <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnVlcSeekB"
                     android:layout_weight="1"
-                    android:text="@string/seek_back"
+                    android:src="@drawable/ic_fast_rewind_black_24dp"
             />
 
-            <Button
+            <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnVlcSeekF"
                     android:layout_weight="1"
-                    android:text="@string/seek_forward"
+                    android:src="@drawable/ic_fast_forward_black_24dp"
+            />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Kaffeine"
+                    android:id="@+id/textViewKaffeine"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="150px"
+                      android:orientation="horizontal" android:weightSum="5">
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnKaffeineQuit"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_cancel_black_24dp"
+            />
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnKaffeineSetChannel"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_personal_video_black_24dp"
+            />
+
+            <EditText
+                    android:id="@+id/txtChannel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="number" />
+
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="150px"
+                          android:orientation="horizontal" android:weightSum="3">
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnKaffeineLastChannel"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_settings_backup_restore_black_24dp"
+            />
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnKaffeinePrev"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_fast_rewind_black_24dp"
+            />
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnKaffeineNext"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_fast_forward_black_24dp"
             />
         </LinearLayout>
 
