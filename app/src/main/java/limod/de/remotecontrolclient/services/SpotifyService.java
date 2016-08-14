@@ -2,6 +2,7 @@ package limod.de.remotecontrolclient.services;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.MySSLSocketFactory;
 import com.loopj.android.http.RequestParams;
 import limod.de.remotecontrolclient.CustomAsynHttpClient;
 import limod.de.remotecontrolclient.MainActivity;
@@ -21,6 +22,7 @@ public class SpotifyService {
 
 
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+
         client.post(getAbsoluteUrl(url), params, responseHandler);
     }
 
