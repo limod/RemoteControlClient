@@ -39,7 +39,7 @@ import java.net.ConnectException;
 public class MainActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
 
     private static final String TAG = "MainActivity";
-    public static final String HOST = "https://192.168.1.11:8080/";
+    public static final String HOST = "https://192.168.2.101:8080/";
     private SeekBar soundSeekBar;
 
 
