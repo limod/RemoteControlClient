@@ -3,6 +3,7 @@ package limod.de.remotecontrolclient;
 import android.support.v4.app.FragmentManager;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HttpStatus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,5 +35,13 @@ public class CustomJsonResponseHandler extends JsonHttpResponseHandler {
 
         InfoDialog dialog = InfoDialog.newInstance(message);
         dialog.show(fm, "Dunno");
+    }
+
+    @Override
+    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+        if(statusCode == HttpStatus.SC_FORBIDDEN){
+            showDialog("Nicht berechtigt!");
+        }
+        super.onFailure(statusCode, headers, responseString, throwable);
     }
 }

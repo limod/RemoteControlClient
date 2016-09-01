@@ -9,7 +9,7 @@ import com.loopj.android.http.MySSLSocketFactory;
 public class CustomAsynHttpClient extends AsyncHttpClient {
 
     public CustomAsynHttpClient() {
-        this.setBasicAuth("specki","secredpassword");
+        this.setBasicAuth("foobar","shithead");
         this.setSSLSocketFactory(MySSLSocketFactory.getFixedSocketFactory());
 
         this.setMaxRetriesAndTimeout(0,0);
