@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentManager;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.HttpStatus;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,5 +44,10 @@ public class CustomJsonResponseHandler extends JsonHttpResponseHandler {
             showDialog("Nicht berechtigt!");
         }
         super.onFailure(statusCode, headers, responseString, throwable);
+    }
+
+    @Override
+    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+        super.onFailure(statusCode, headers, throwable, errorResponse);
     }
 }

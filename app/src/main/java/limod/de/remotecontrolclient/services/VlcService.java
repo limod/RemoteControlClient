@@ -11,7 +11,7 @@ import limod.de.remotecontrolclient.MainActivity;
  */
 public class VlcService extends RestService{
 
-    private static final String SERVICE_URL = MainActivity.HOST + "myapp/vlc/";
+    private static final String SERVICE_URL = "myapp/vlc/";
     public static final String API_PLAY = "play";
     public static final String API_PAUSE = "pause";
     public static final String API_NEXT= "next";

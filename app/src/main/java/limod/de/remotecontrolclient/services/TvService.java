@@ -10,7 +10,7 @@ import limod.de.remotecontrolclient.MainActivity;
  */
 public class TvService extends RestService {
 
-    private static final String SERVICE_URL = MainActivity.HOST + "myapp/tv/";
+    private static final String SERVICE_URL = "myapp/tv/";
     public static final String API_SET_CHANNEL = "setChannel";
     public static final String API_PLAY_LAST_CHANNEL = "playLastChannel";
     public static final String API_NEXT= "next";
