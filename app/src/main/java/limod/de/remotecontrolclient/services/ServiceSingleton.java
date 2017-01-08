@@ -10,6 +10,8 @@ public class ServiceSingleton {
 
     private SoundService soundService;
     private SpotifyService spotifyService;
+    private VlcService vlcService;
+    private TvService tvService;
 
     private List<RestService> restServiceList = new ArrayList<>();
 
@@ -26,6 +28,10 @@ public class ServiceSingleton {
         restServiceList.add(this.getSoundService());
         this.setSpotifyService(new SpotifyService());
         restServiceList.add(this.getSpotifyService());
+        this.setVlcService(new VlcService());
+        restServiceList.add(this.getVlcService());
+        this.setTvService(new TvService());
+        restServiceList.add(this.getTvService());
     }
 
 
@@ -51,5 +57,30 @@ public class ServiceSingleton {
 
     public void setSpotifyService(SpotifyService spotifyService) {
         this.spotifyService = spotifyService;
+    }
+
+    public VlcService getVlcService() {
+        if(vlcService == null){
+            vlcService = new VlcService();
+            restServiceList.add(vlcService);
+        }
+        return vlcService;
+    }
+
+    public void setVlcService(VlcService vlcService) {
+        this.vlcService = vlcService;
+    }
+
+    public TvService getTvService() {
+        if(tvService == null){
+            tvService = new TvService();
+            restServiceList.add(tvService);
+        }
+        return tvService;
+
+    }
+
+    public void setTvService(TvService tvService) {
+        this.tvService = tvService;
     }
 }

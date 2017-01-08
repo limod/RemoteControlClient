@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
                     params.put("channel", txtChannel.getText());
 
 
-                    TvService.post(TvService.API_SET_CHANNEL, params, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                    services.getTvService().post(TvService.API_SET_CHANNEL, params, new CustomJsonResponseHandler(getSupportFragmentManager()));
                 } else {
                     showDialog("Kein Channel gesetzt");
                 }
@@ -168,27 +168,27 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         ImageButton btnQuit = (ImageButton) findViewById(R.id.btnKaffeineQuit);
         btnQuit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                TvService.post(TvService.API_QUIT, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                services.getTvService().post(TvService.API_QUIT, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
             }
         });
 
         ImageButton btnNext = (ImageButton) findViewById(R.id.btnKaffeineNext);
         btnNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                TvService.post(TvService.API_NEXT, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                services.getTvService().post(TvService.API_NEXT, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
             }
         });
 
         ImageButton btnPrev = (ImageButton) findViewById(R.id.btnKaffeinePrev);
         btnPrev.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                TvService.post(TvService.API_PREVIOUS, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                services.getTvService().post(TvService.API_PREVIOUS, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
             }
         });
         ImageButton btnLastChannel = (ImageButton) findViewById(R.id.btnKaffeineLastChannel);
         btnLastChannel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                TvService.post(TvService.API_PLAY_LAST_CHANNEL, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                services.getTvService().post(TvService.API_PLAY_LAST_CHANNEL, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
             }
         });
 
@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         btnVlcPlay.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                VlcService.post(VlcService.API_PLAY, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                services.getVlcService().post(VlcService.API_PLAY, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
 
             }
         });
@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         btnVlcPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                VlcService.post(VlcService.API_PAUSE, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                services.getVlcService().post(VlcService.API_PAUSE, null, new CustomJsonResponseHandler(getSupportFragmentManager()));
 
             }
         });
@@ -319,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
                 RequestParams params = new RequestParams();
                 params.put("direction", -1);
 
-                VlcService.post(VlcService.API_SEEK, params, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                services.getVlcService().post(VlcService.API_SEEK, params, new CustomJsonResponseHandler(getSupportFragmentManager()));
 
 
             }
@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
                 RequestParams params = new RequestParams();
                 params.put("direction", +1);
 
-                VlcService.post(VlcService.API_SEEK, params, new CustomJsonResponseHandler(getSupportFragmentManager()));
+                services.getVlcService().post(VlcService.API_SEEK, params, new CustomJsonResponseHandler(getSupportFragmentManager()));
 
             }
         });
